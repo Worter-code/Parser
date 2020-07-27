@@ -33,7 +33,8 @@ def get_internal_links(url, pages):
 
         # если ссылка не начинается с одного из запрещённых префиксов
         if all(not link.startswith(prefix) for prefix in ['#', 'tel:', 'mailto:']):
-
+            if link.startswith("https://www."):
+                link = "http://" + link[12:]
             if link.startswith('/') and not link.startswith('//') and link[-3:] not in ['doc', 'pdf']:
                 link = url + link
             # проверяем, что ссылка ведёт на нужный домен
